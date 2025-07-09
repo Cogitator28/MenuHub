@@ -2,21 +2,41 @@
 
 import type React from "react"
 
+import { useSignIn } from "@clerk/nextjs"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { toast } from "sonner"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
+
+
 export default function LoginPage() {
+  const { isLoaded, signIn, setActive } = useSignIn()
+  const router = useRouter()
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement Clerk authentication
-    console.log("Login attempt:", { email, password })
+    if (!isLoaded) return
+
+    try {
+      const result = await signIn.create({ identifier: email, password })
+
+      if (result.status === "complete") {
+        await setActive({ session: result.createdSessionId })
+        router.push("/dashboard")
+      } else {
+        toast.error("Check your credentials or try again.")
+      }
+    } catch (err: any) {
+      toast.error(err.errors?.[0]?.message || "Login failed.")
+    }
   }
 
   return (

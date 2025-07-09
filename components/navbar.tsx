@@ -1,15 +1,23 @@
 "use client"
 
+import {
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignInButton,
+  SignUpButton
+} from "@clerk/nextjs"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChefHat } from "lucide-react"
-import { useState } from "react"
+// import { useState } from "react"
+
 
 export function Navbar() {
-  // Mock auth state - replace with actual auth logic
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-
   return (
+
+
     <nav className="border-b bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -22,18 +30,21 @@ export function Navbar() {
             <Link href="/explore">
               <Button variant="ghost">Explore Restaurants</Button>
             </Link>
-            {isAuthenticated ? (
-              <Link href="/dashboard">
+            <SignedIn>
+              <Link href="/dashboard/setup">
                 <Button>Dashboard</Button>
               </Link>
-            ) : (
-              <Link href="/auth/login">
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton mode="modal">
                 <Button>Login</Button>
-              </Link>
-            )}
+              </SignInButton>
+            </SignedOut>
           </div>
         </div>
       </div>
     </nav>
+
   )
 }

@@ -2,23 +2,51 @@
 
 import type React from "react"
 
+import { useSignUp } from "@clerk/nextjs"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { toast } from "sonner"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
+
+
 export default function RegisterPage() {
+  const { isLoaded, signUp, setActive } = useSignUp()
+  const router = useRouter()
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement Clerk authentication
-    console.log("Register attempt:", { email, password, confirmPassword })
+    if (!isLoaded) return
+    if (password !== confirmPassword) return toast.error("Passwords do not match")
+
+    try {
+      const result = await signUp.create({
+        emailAddress: email,
+        password,
+      })
+
+      await signUp.prepareEmailAddressVerification({ strategy: "email_code" })
+      toast.success("Check your email for verification code.")
+
+      // Optionally auto-complete the sign-up
+      await signUp.attemptEmailAddressVerification({ code: "123456" }) // replace with actual input
+      await setActive({ session: result.createdSessionId })
+      router.push("/dashboard")
+    } catch (err: any) {
+      alert('error')
+      toast.error(err.errors?.[0]?.message || "Registration failed.")
+    }
   }
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
