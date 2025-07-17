@@ -112,6 +112,7 @@ export default function HomePage() {
           </SignedOut>
         </div>
       </section>
+      <hr />
     </div>
   )
 }

@@ -27,9 +27,11 @@ export function Navbar() {
           </Link>
 
           <div className="flex items-center space-x-4">
-            <Link href="/explore">
-              <Button variant="ghost">Explore Restaurants</Button>
-            </Link>
+            <div className="hidden lg:flex">
+              <Link href="/explore">
+                <Button variant="ghost">Explore Restaurants</Button>
+              </Link>
+            </div>
             <SignedIn>
               <Link href="/dashboard/setup">
                 <Button>Dashboard</Button>
