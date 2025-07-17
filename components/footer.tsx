@@ -38,8 +38,8 @@ export function Footer() {
                     <h3 className="font-medium mb-2">Contact</h3>
                     <p className="text-gray-300">
                         support@menuhub.com <br />
-                        +1 (555) 123-4567 <br />
-                        123 Menu St, Food City, USA
+                        +234 806 1651 251 <br />
+                        lagos, Nigeria.
                     </p>
                 </div>
             </div>
