@@ -23,7 +23,7 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
             <ChefHat className="h-8 w-8 text-orange-600" />
-            <span className="text-xl font-bold text-gray-900">MenuHub</span>
+            <span className="text-xl font-bold text-gray-900 font-serif">MenuHub</span>
           </Link>
 
           <div className="flex items-center space-x-4">

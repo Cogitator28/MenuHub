@@ -1,3 +1,5 @@
+import { ChefHat } from "lucide-react"
+
 export function Footer() {
     return (
         <footer className="bg-gray-900 text-white px-6 py-10">
@@ -5,7 +7,10 @@ export function Footer() {
 
                 {/* Brand Section */}
                 <div>
-                    <h2 className="text-lg font-semibold">MenuHub</h2>
+                    <div className="flex space-x-1 items-center font-serif">
+                        <ChefHat className="h-8 w-8 text-orange-600" />
+                        <h2 className="text-lg font-semibold">MenuHub</h2>
+                    </div>
                     <p className="mt-2 text-gray-400">
                         Your all-in-one solution for digital restaurant menus. Manage, customize, and serve with ease.
                     </p>
