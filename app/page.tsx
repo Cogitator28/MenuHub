@@ -2,6 +2,14 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChefHat, Menu, Search, Smartphone } from "lucide-react"
+import {
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignInButton,
+  SignUpButton
+} from "@clerk/nextjs"
+
 
 export default function HomePage() {
   return (
@@ -95,11 +103,13 @@ export default function HomePage() {
           <p className="text-xl text-gray-300 mb-8">
             Join hundreds of restaurants already using MenuHub to showcase their offerings.
           </p>
-          <Link href="/auth/register">
-            <Button size="lg" className="text-lg px-8 py-3 bg-orange-600 hover:bg-orange-700">
-              Get Started Free
-            </Button>
-          </Link>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button size="lg" className="text-lg px-8 py-3 bg-orange-600 hover:bg-orange-700">
+                Get Started Free
+              </Button>
+            </SignInButton>
+          </SignedOut>
         </div>
       </section>
     </div>

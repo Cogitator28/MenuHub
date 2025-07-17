@@ -1,5 +1,12 @@
 "use client"
 
+import {
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignInButton,
+  SignUpButton
+} from "@clerk/nextjs"
 import { useState } from "react"
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
@@ -155,9 +162,11 @@ export default function ExplorePage() {
         <div className="mt-16 text-center bg-gray-50 rounded-lg p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Own a restaurant?</h2>
           <p className="text-gray-600 mb-6">Create your own digital menu and reach more customers</p>
-          <Link href="/auth/register">
-            <Button size="lg">Get Started Free</Button>
-          </Link>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button size="lg">Get Started Free</Button>
+            </SignInButton>
+          </SignedOut>
         </div>
       </div>
     </div>
