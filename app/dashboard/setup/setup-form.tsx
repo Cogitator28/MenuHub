@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Upload } from "lucide-react"
 
 
-type SetupFormProps = {
+interface SetupFormProps {
     userId: string
 }
 

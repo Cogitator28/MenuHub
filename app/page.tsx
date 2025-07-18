@@ -26,11 +26,13 @@ export default function HomePage() {
             browse.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/auth/register">
-              <Button size="lg" className="text-lg px-8 py-3">
-                Create Your Menu Page
-              </Button>
-            </Link>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <Button size="lg" className="text-lg px-8 py-3">
+                  Create Your Menu Page
+                </Button>
+              </SignInButton>
+            </SignedOut>
             <Link href="/explore">
               <Button variant="outline" size="lg" className="text-lg px-8 py-3 bg-transparent">
                 Explore Restaurants

@@ -3,7 +3,7 @@ import { redirect } from "next/navigation"
 import MenuDashboard from "./menu-dashboard"
 
 
-export default async function SetupPage() {
+export default async function MenuPage() {
   const { userId } = await auth()
 
   if (!userId) {

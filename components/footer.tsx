@@ -44,7 +44,7 @@ export function Footer() {
                     <p className="text-gray-300">
                         support@menuhub.com <br />
                         +234 806 1651 251 <br />
-                        lagos, Nigeria.
+                        Lagos, Nigeria.
                     </p>
                 </div>
             </div>

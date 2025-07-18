@@ -38,14 +38,14 @@ const mockMenuItems = [
   },
 ]
 
-type MenuDashboardProps = {
+interface MenuDashboardProps  {
   userId: String
 }
 
 export default function MenuDashboard({ userId }: MenuDashboardProps) {
   const [menuItems, setMenuItems] = useState(mockMenuItems)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [editingItem, setEditingItem] = useState(null)
+  const [editingItem, setEditingItem] = useState<typeof mockMenuItems[0] | null>(null)
 
   const handleAddItem = () => {
     setEditingItem(null)
@@ -86,7 +86,7 @@ export default function MenuDashboard({ userId }: MenuDashboardProps) {
   )
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-1">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
